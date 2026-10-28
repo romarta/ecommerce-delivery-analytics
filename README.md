@@ -2,7 +2,7 @@
 
 ### End-to-End Business Analytics with PostgreSQL, Python, Machine Learning & Power BI
 
-**Project Status:** In Progress
+**Project Status:** SQL Data Preparation Completed — Exploratory Data Analysis Next
 
 ## Project Overview
 
@@ -136,9 +136,13 @@ The planned deliverables include:
 
 ## Project Status
 
-The project is currently in the setup and data acquisition phase.
+The project is currently in the setup and data acquisition phase. Analysis results, visualizations, model evaluation, 
+and business recommendations will be added as the project progresses.
 
-Analysis results, visualizations, model evaluation, and business recommendations will be added as the project progresses.
+## Technical Documentation
+
+- [Database Import Instructions](sql/03_import_data.md)
+- [Data Quality Summary](docs/data_quality_summary.md)
 
 ## Data Attribution
 
