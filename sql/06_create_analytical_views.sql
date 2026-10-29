@@ -1,16 +1,10 @@
 -- Create one representative location per ZIP prefix
 CREATE OR REPLACE VIEW vw_geolocation_prefix AS
-SELECT
-    geolocation_zip_code_prefix,
+SELECT geolocation_zip_code_prefix,
 
     -- Calculate representative coordinates using the median
-    PERCENTILE_CONT(0.5) WITHIN GROUP (
-        ORDER BY geolocation_lat
-    ) AS latitude,
-
-    PERCENTILE_CONT(0.5) WITHIN GROUP (
-        ORDER BY geolocation_lng
-    ) AS longitude,
+    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY geolocation_lat) AS latitude_mdn,
+    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY geolocation_lng) AS longitude_mdn,
 
     -- Count observations for each ZIP prefix
     COUNT(*) AS location_count,

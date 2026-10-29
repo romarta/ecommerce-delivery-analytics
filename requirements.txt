@@ -1,2 +1,7 @@
 pandas
 jupyterlab
+sqlalchemy
+psycopg2-binary
+matplotlib
+seaborn
+scipy
