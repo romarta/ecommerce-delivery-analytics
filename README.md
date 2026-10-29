@@ -2,7 +2,7 @@
 
 ### End-to-End Business Analytics with PostgreSQL, Python, Machine Learning & Power BI
 
-**Project Status:** SQL Data Preparation Completed — Exploratory Data Analysis Next
+**Project Status:** SQL Data Preparation, Data Quality Assessment & Exploratory Data Analysis Completed — Machine Learning Next
 
 ## Project Overview
 
@@ -70,7 +70,7 @@ Raw datasets are not included in this repository. Instructions for obtaining the
 
 ## Tools and Technologies
 
-The planned analytical workflow uses:
+The project uses the following tools and technologies, including those planned for later stages:
 
 | Tool | Purpose |
 |---|---|
@@ -110,6 +110,54 @@ The project is organized into the following stages:
 | `powerbi/` | Power BI reports and dashboard screenshots |
 | `reports/` | Executive summary and business recommendations |
 
+## Key Exploratory Analysis Findings
+
+Exploratory data analysis was conducted on orders purchased between January 2017 and August 2018.
+The analysis covered delivery performance, geographical factors, sales trends, and customer satisfaction.
+
+### Delivery Performance
+
+- The median delivery time was **10 days**, with a mean of approximately **12.5 days**.
+- Approximately **6.8%** of evaluated deliveries arrived after the estimated delivery date.
+- Delivery distance was moderately correlated with actual delivery time (Spearman ρ = 0.543).
+- Interstate deliveries generally took longer than deliveries within the same state.
+
+### Delivery Delay Spikes
+
+Three months showed particularly high late delivery rates:
+
+| Month | Late Delivery Rate |
+|---|---:|
+| November 2017 | 12.40% |
+| February 2018 | 14.13% |
+| March 2018 | 18.96% |
+
+The increases were associated with changes in transit times, delivery estimates, and shipping-route performance.
+The São Paulo → Rio de Janeiro shipping corridor showed particularly substantial deterioration in November 2017 and February 2018.
+
+### Sales Performance
+
+- Monthly total order value increased significantly throughout 2017, reaching approximately **BRL 1.15 million** in November.
+- In 2018, monthly order value remained relatively stable at around **BRL 1 million**.
+- Average order value was comparatively stable, indicating that changes in total order value were primarily associated with order volume.
+- The five largest product categories generated approximately **39.9% of total merchandise value**.
+
+### Customer Satisfaction
+
+- On-time deliveries received an average review score of **4.29/5**, compared with **2.27/5** for late deliveries.
+- Low ratings (1–2 stars) occurred in **9.21%** of on-time deliveries and **62.35%** of late deliveries.
+- Among late deliveries, delay duration was negatively correlated with customer ratings (Spearman ρ = −0.401, p < 0.001).
+- Customer dissatisfaction increased particularly sharply when delivery delays exceeded two days.
+
+### Business Implications
+
+The findings highlight delivery reliability as an important operational priority.
+Monitoring should include not only the overall late delivery rate but also delay duration, transit-time distributions, and performance across shipping routes.
+All findings are based on observational data and should not be interpreted as evidence of causation.
+
+Detailed analysis, visualizations, and statistical results are available in the [Exploratory Data Analysis Notebook](notebooks/02_exploratory_analysis.ipynb).
+
+
 ## Methodological Considerations
 
 The project uses historical observational data. Statistical associations will not be interpreted as causal relationships.
@@ -122,27 +170,46 @@ Predictive models will be evaluated using appropriate validation strategies and 
 
 ## Project Deliverables
 
-The planned deliverables include:
+### Completed
 
-- A reproducible PostgreSQL database setup
-- Documented SQL transformations and analytical queries
-- Data quality assessment
-- Exploratory data analysis
-- Statistical hypothesis testing
-- Delivery delay prediction models
+- PostgreSQL database setup and data import scripts
+- SQL data validation, transformations, and analytical views
+- Data quality assessment and documentation
+- Exploratory data analysis in Python and JupyterLab
+- Statistical analysis of delivery performance and customer satisfaction
+- Initial business findings and operational recommendations
+
+### Planned
+
+- Machine learning models for delivery delay prediction
+- Model performance evaluation and interpretation
 - Interactive Power BI dashboard
-- Business findings and recommendations
-- Reproduction instructions
+- Final business report and recommendations
+- Updated end-to-end reproduction instructions
 
 ## Project Status
 
-The project is currently in the setup and data acquisition phase. Analysis results, visualizations, model evaluation, 
-and business recommendations will be added as the project progresses.
+**Current Stage: Exploratory Data Analysis Completed**
+
+The PostgreSQL database, SQL transformations, data quality assessment, and exploratory analysis have been completed.
+The EDA includes delivery performance metrics, geographical analysis, investigation of monthly delivery delay spikes, sales performance, and customer satisfaction analysis.
+
+**Next Stage: Machine Learning**
+
+The next phase will focus on preparing order-level features and developing models to predict late deliveries.
+Particular attention will be given to preventing data leakage by using only information available at the intended prediction time.
+
+**Future Stage: Power BI**
+
+An interactive dashboard will present the main business KPIs, sales trends, delivery performance, geographical patterns, and customer satisfaction metrics.
 
 ## Technical Documentation
 
 - [Database Import Instructions](sql/03_import_data.md)
 - [Data Quality Summary](docs/data_quality_summary.md)
+- [Data Understanding Notebook](notebooks/01_data_understanding.ipynb)
+- [Exploratory Data Analysis Notebook](notebooks/02_exploratory_analysis.ipynb)
+- [Exploratory Data Analysis Summary](docs/eda_summary.md)
 
 ## Data Attribution
 
