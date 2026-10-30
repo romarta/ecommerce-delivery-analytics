@@ -2,7 +2,7 @@
 
 ### End-to-End Business Analytics with PostgreSQL, Python, Machine Learning & Power BI
 
-**Project Status:** SQL Data Preparation, Data Quality Assessment & Exploratory Data Analysis Completed — Machine Learning Next
+**Project Status:** SQL, Data Quality, Exploratory Analysis & Machine Learning Completed — Power BI Next
 
 ## Project Overview
 
@@ -81,8 +81,11 @@ The project uses the following tools and technologies, including those planned f
 | pandas / NumPy | Data manipulation |
 | scipy / statsmodels | Statistical inference |
 | scikit-learn | Predictive modeling and evaluation |
+| CatBoost | Gradient boosting classification |
+| joblib | Machine learning model serialization |
 | Power BI | Business intelligence dashboards |
 | Git / GitHub | Version control and project documentation |
+
 
 ## Project Workflow
 
@@ -105,6 +108,7 @@ The project is organized into the following stages:
 | `data/` | Data source documentation and local data directories |
 | `sql/` | Database creation, validation, transformation, and analytical SQL scripts |
 | `notebooks/` | Exploratory, statistical, and machine learning analyses |
+| `models/` | Exported machine learning models |
 | `src/` | Reusable Python scripts |
 | `docs/` | Analytical methodology, data quality documentation, and supporting materials |
 | `powerbi/` | Power BI reports and dashboard screenshots |
@@ -157,16 +161,44 @@ All findings are based on observational data and should not be interpreted as ev
 
 Detailed analysis, visualizations, and statistical results are available in the [Exploratory Data Analysis Notebook](notebooks/02_exploratory_analysis.ipynb).
 
+## Key Machine Learning Findings
+
+Four classification algorithms were evaluated to predict delivery delays using information available at purchase: Logistic Regression, Random Forest, HistGradientBoosting, and CatBoost.
+
+**Logistic Regression achieved the strongest validation performance** using nine selected features.
+
+### Model Performance
+
+| Metric | Validation | Final Test |
+|---|---:|---:|
+| PR-AUC | 0.2351 | 0.0752 |
+| ROC-AUC | 0.7246 | 0.6365 |
+| Precision@10% | 30.82% | 6.63% |
+| Lift@10% | 3.05 | 1.38 |
+
+The substantial performance decline on the final test set highlighted limitations in the model's ability to generalize over time.
+Temporal backtesting confirmed that predictive performance varied considerably across historical periods.
+
+### Key Predictive Factors
+
+Permutation feature importance identified three leading predictors:
+
+- Estimated delivery days
+- Customer state
+- Delivery distance
+
+**Business implication:** The model demonstrates some ability to rank orders by delivery delay risk, but its limited temporal stability and unreliable probability estimates prevent its use as a production-ready prediction system.
+
+Detailed methodology and results are available in the [Machine Learning Summary](docs/ml_summary.md) and [Delivery Delay Prediction Notebook](notebooks/03_delivery_delay_prediction.ipynb).
+
 
 ## Methodological Considerations
 
-The project uses historical observational data. Statistical associations will not be interpreted as causal relationships.
-
-Sales metrics, delivery performance indicators, and analytical populations will be explicitly defined and documented.
-
-Special attention will be given to relational data granularity, missing values, order statuses, and the prevention of data leakage in predictive modeling.
-
-Predictive models will be evaluated using appropriate validation strategies and compared against baseline approaches.
+The project uses historical observational data. Statistical associations are not interpreted as causal relationships.
+Sales metrics, delivery performance indicators, and analytical populations are explicitly defined and documented.
+Data quality assessment addresses relational data granularity, missing values, and order statuses.
+Predictive modeling uses chronological data splits and outcome availability checks to reduce future-label leakage. Model evaluation includes baseline comparisons, final test assessment, and temporal backtesting.
+Limitations related to selection bias, temporal instability, and probability calibration are documented.
 
 ## Project Deliverables
 
@@ -178,30 +210,33 @@ Predictive models will be evaluated using appropriate validation strategies and 
 - Exploratory data analysis in Python and JupyterLab
 - Statistical analysis of delivery performance and customer satisfaction
 - Initial business findings and operational recommendations
+- Machine learning model development and comparison
+- Hyperparameter tuning and feature selection
+- Chronological model evaluation and temporal backtesting
+- Model interpretation and performance documentation
+- Exported Logistic Regression pipeline
 
 ### Planned
 
-- Machine learning models for delivery delay prediction
-- Model performance evaluation and interpretation
 - Interactive Power BI dashboard
 - Final business report and recommendations
 - Updated end-to-end reproduction instructions
 
 ## Project Status
 
-**Current Stage: Exploratory Data Analysis Completed**
+**Current Stage: Machine Learning Completed**
 
-The PostgreSQL database, SQL transformations, data quality assessment, and exploratory analysis have been completed.
-The EDA includes delivery performance metrics, geographical analysis, investigation of monthly delivery delay spikes, sales performance, and customer satisfaction analysis.
+The SQL, data quality, exploratory analysis, and machine learning stages have been completed.
 
-**Next Stage: Machine Learning**
+The predictive modeling stage included algorithm comparison, feature selection, chronological evaluation, temporal backtesting, and model interpretation.
 
-The next phase will focus on preparing order-level features and developing models to predict late deliveries.
-Particular attention will be given to preventing data leakage by using only information available at the intended prediction time.
+The final test revealed substantial limitations in model generalization and probability calibration. These findings are documented in the Machine Learning Summary.
 
-**Future Stage: Power BI**
+**Next Stage: Power BI**
 
-An interactive dashboard will present the main business KPIs, sales trends, delivery performance, geographical patterns, and customer satisfaction metrics.
+The next phase will focus on developing an interactive dashboard presenting business KPIs, sales trends, delivery performance, geographical patterns, and customer satisfaction.
+
+The dashboard will also incorporate relevant findings from the delivery delay prediction analysis.
 
 ## Technical Documentation
 
@@ -210,6 +245,8 @@ An interactive dashboard will present the main business KPIs, sales trends, deli
 - [Data Understanding Notebook](notebooks/01_data_understanding.ipynb)
 - [Exploratory Data Analysis Notebook](notebooks/02_exploratory_analysis.ipynb)
 - [Exploratory Data Analysis Summary](docs/eda_summary.md)
+- [Delivery Delay Prediction Notebook](notebooks/03_delivery_delay_prediction.ipynb)
+- [Machine Learning Summary](docs/ml_summary.md)
 
 ## Data Attribution
 
