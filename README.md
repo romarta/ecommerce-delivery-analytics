@@ -2,6 +2,10 @@
 
 End-to-End Business Analytics with PostgreSQL, Python, Machine Learning & Power BI
 
+**[View Interactive Power BI Dashboard](https://app.powerbi.com/view?r=eyJrIjoiOTUxMmZmNmMtZDQ0ZS00YjA1LTg2ODEtZDFhMDlkMGIzNWIxIiwidCI6IjJmYWI1MTA4LTBiM2UtNDYwMy05Yjc3LTM2Y2QyYzk0ZmEzZSJ9)**
+
+Explore the Executive Overview, Delivery Performance, and Risk Monitoring dashboards.
+
 ## Project Overview
 
 This project explores e-commerce sales performance, order fulfillment efficiency, delivery delays, and customer satisfaction using real-world transactional data from Olist, a Brazilian e-commerce platform.
@@ -160,7 +164,7 @@ The Python scripts automatically load these settings from `.env`. No interactive
 ### 3. Prepare the Database
 
 Create the PostgreSQL database and execute the SQL scripts in the `sql/` directory to prepare the historical dataset, analytical views, and risk monitoring tables.
-The original Olist dataset must be downloaded separately. See [Data Source Documentation](data/README.md) and [Database Import Instructions](sql/03_import_data.md).
+The original Olist dataset must be downloaded separately. See [Data Source and Import Instructions](data/README.md) for setup details.
 
 ### 4. Run the Risk Monitoring Pipeline
 
@@ -372,6 +376,9 @@ Detailed methodology, analytical findings, and implementation notes are availabl
 | Data quality | [Data Quality Summary](docs/data_quality_summary.md) |
 | Exploratory and statistical analysis | [EDA Summary](docs/eda_summary.md) · [EDA Notebook](notebooks/02_exploratory_analysis.ipynb) |
 | Machine learning | [ML Summary](docs/ml_summary.md) · [ML Notebook](notebooks/03_delivery_delay_prediction.ipynb) |
+| Power BI Dashboard | [Power BI Dashboard Documentation](docs/powerbi_dashboard.md) |
+| Risk Monitoring | [Risk Monitoring Pipeline](docs/risk_monitoring_pipeline.md) |
+| Business Insights | [Key Business Insights & Recommendations](reports/business_insights_and_recommendations.md) |
 
 ## Data Attribution
 

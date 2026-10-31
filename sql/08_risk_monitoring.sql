@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS new_orders (
 
     -- Delivery promise and geography
     estimated_delivery_days DOUBLE PRECISION,
+    estimated_delivery_date DATE,
     distance_km DOUBLE PRECISION,
     customer_state TEXT,
     seller_state TEXT,
