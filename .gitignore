@@ -19,6 +19,7 @@ data/processed/
 # Environment variables and credentials
 .env
 .env.*
+!.env.example
 
 # System files
 .DS_Store

@@ -8,3 +8,6 @@ scipy
 numpy
 scikit-learn
 catboost
+joblib
+python-dotenv
+
